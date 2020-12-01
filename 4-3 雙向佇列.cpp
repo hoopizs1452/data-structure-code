@@ -34,7 +34,7 @@ void Queue::Dequeue()
 
 void Queue::BackEnqueue(int x)
 {
-	front = (front+1)%10;
+	front = (front+9)%10;
 	arr[front] = x;
 }
 
@@ -45,7 +45,7 @@ void Queue::BackDequeue()
 
 void Queue::PrintQueue()
 {
-	for(int i = front;i!= rear;(i+1)%10){
+	for(int i = front;i!= rear;i=(i+1)%10){
 		cout<<arr[i]<<" ";
 	}
 	cout << " rear:" << rear << " front:" << front << endl;
