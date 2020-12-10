@@ -53,45 +53,8 @@ void BinTree::BuildTree(int data[], int n)
 			else
 				parent->rightChild = newNode;
 		}
-	} 
-}
-
-void BinTree::Plot() {
-	int MAX_HEIGHT = 7, CHAR_SPACE = 2;
-	int capacity = pow(2, MAX_HEIGHT);
-	int arr[capacity] = {0};
-	queue<TreeNode*> q;
-	queue<int> index_q;
-	q.push(root);
-	index_q.push(1);
-	TreeNode *currentNode;
-	int currentIndex, tail = 0;
-	while(!q.empty()) {
-		currentNode = q.front(); q.pop();
-		currentIndex = index_q.front(); index_q.pop();
-		arr[currentIndex] = currentNode->data;
-		if (tail < currentIndex) tail = currentIndex;
-		if (currentNode->leftChild) {
-			q.push(currentNode->leftChild);
-			index_q.push(currentIndex * 2);}
-		if (currentNode->rightChild) {
-			q.push(currentNode->rightChild);
-			index_q.push(currentIndex * 2 + 1);}
 	}
-	int i, sps;
-	int max_level = tail == 1 ? 1 : sqrt(tail) + 1;
-	for (int lv = 1; lv <= max_level; lv++) {
-		sps = pow(2, max_level - lv) * CHAR_SPACE;
-		i = pow(2, lv - 1);
-		cout << setw(sps);
-		if (arr[i]) cout << arr[i]; else cout << " ";
-		sps *= 2;
-		for (i++; i <= pow(2, lv) - 1; i++) {
-			cout << setw(sps);
-			if (arr[i]) cout << arr[i]; else cout << " ";
-		}
-		cout << endl;
-	}
+	Plot();
 }
 
 void BinTree::Inorder(TreeNode* n)
@@ -124,6 +87,15 @@ void BinTree::Postorder(TreeNode* n)
 	}
 }
 
+void BinTree::Plot() 
+{
+	Inorder(root);
+	cout << endl;
+	Preorder(root);
+	cout << endl;
+	Postorder(root);
+	cout << endl;
+}
 
 int main(int argc, char *argv[])
 {   
